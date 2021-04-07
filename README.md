@@ -1,4 +1,4 @@
-# Cleaner Configs
+# Cleaner Config
 
 A utility to easily manage strongly-typed JSON configs using cleaners for runtime type-checking. The benefits for using type-checked config:
 
