@@ -1,0 +1,41 @@
+{
+  "name": "cleaner-config",
+  "version": "0.1.0",
+  "description": "A utility to manage config using cleaners.",
+  "license": "MIT",
+  "author": "Samuel Holmes <sam@edge.app>",
+  "main": "lib/index.js",
+  "scripts": {
+    "build.lib": "sucrase -q -t typescript,imports,jsx -d ./lib ./src",
+    "build.types": "tsc",
+    "clean": "rimraf dist lib",
+    "fix": "npm run lint -- --fix",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "precommit": "lint-staged && yarn test && yarn prepare",
+    "prepare": "npm-run-all clean -p build.*",
+    "test": "NODE_ENV=test mocha 'test/**/*.test.ts'"
+  },
+  "dependencies": {
+    "cleaners": "^0.3.8"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
+    "eslint": "^7.17.0",
+    "eslint-config-standard-kit": "^0.15.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^4.3.7",
+    "lint-staged": "^10.5.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  }
+}

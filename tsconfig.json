@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "lib",
+    "emitDeclarationOnly": true,
+
+    "esModuleInterop": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "es2015",
+
+    "lib": ["ES2019"],
+
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "exclude": ["node_modules", "lib"]
+}
