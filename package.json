@@ -2,6 +2,11 @@
   "name": "cleaner-config",
   "version": "0.1.0",
   "description": "A utility to manage config using cleaners.",
+  "homepage": "https://github.com/samholmes/cleaner-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samholmes/cleaner-config.git"
+  },
   "license": "MIT",
   "author": "Samuel Holmes <sam@edge.app>",
   "main": "lib/index.js",
@@ -15,11 +20,11 @@
     "prepare": "npm-run-all clean -p build.*",
     "test": "NODE_ENV=test mocha 'test/**/*.test.ts'"
   },
-  "dependencies": {
-    "cleaners": "^0.3.8"
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint"
+  },
+  "dependencies": {
+    "cleaners": "^0.3.8"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
