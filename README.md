@@ -87,3 +87,21 @@ Although the `makeConfig` function will create a new config JSON file at app run
 ```
 
 Now our config file is available after app installation, ready for modification!
+
+### CLI
+
+Conveniently, `cleaner-config` comes with a `configure` CLI utility which can be used instead of a script in your `package.json`.
+
+```json
+{
+  "scripts": {
+    "prepare": "configure && yarn build"
+  }
+}
+```
+
+The `configure` will look for a `config.ts` file in your project root or in `src/`, compile it using `sucrase`, and then run it using node. Optionally, you can provide a file path argument to your config script.
+
+```
+configure src/my-config.ts
+```
