@@ -21,7 +21,7 @@
     "test": "NODE_ENV=test mocha 'test/**/*.test.ts'"
   },
   "bin": {
-    "configure": "src/cli.ts"
+    "configure": "bin/cli.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint"

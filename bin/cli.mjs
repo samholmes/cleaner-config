@@ -21,7 +21,7 @@ const pathArg = argv._[0]
 
 // Read Config:
 
-let configPath: string | null = null
+let configPath = null
 const paths = pathArg == null ? defaultPaths : [pathArg]
 
 const code = (() => {
