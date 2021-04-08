@@ -20,13 +20,19 @@
     "prepare": "npm-run-all clean -p build.*",
     "test": "NODE_ENV=test mocha 'test/**/*.test.ts'"
   },
+  "bin": {
+    "configure": "src/cli.ts"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint"
   },
   "dependencies": {
-    "cleaners": "^0.3.8"
+    "cleaners": "^0.3.8",
+    "minimist": "^1.2.5",
+    "sucrase": "^3.17.1"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.1",
     "@types/node": "^14.14.22",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
