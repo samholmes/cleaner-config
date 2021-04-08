@@ -25,14 +25,12 @@ export const makeConfig = <T>(
       throw new Error(`Missing config file: ${filepath}`)
     }
 
-    if (process.env.NODE_ENV === 'config') {
-      try {
-        configToFile(defaultConfig, filepath)
-      } catch (error) {
-        throw new Error(
-          `Failed to write config file.\n${indentErrorStack(error.stack)}`
-        )
-      }
+    try {
+      configToFile(defaultConfig, filepath)
+    } catch (error) {
+      throw new Error(
+        `Failed to write config file.\n${indentErrorStack(error.stack)}`
+      )
     }
 
     return defaultConfig

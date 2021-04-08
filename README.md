@@ -69,45 +69,21 @@ export const asConfig = asObject({
 export const config = makeConfig(asConfig)
 ```
 
-### Template Objects
+The `config.json` file will automatically be created with the default values if it doesn't exist. This means zero-configuration for your app out of the box!
 
-You can also use a separate object for you default values.
+With a cleaner config, you no longer need to copying `config.sample.json` to `config.json`! This is automated for you. This saves you a step when running your app and also the overhead of maintaining an a default config file that isn't type checked.
 
-```ts
-export type Config = ReturnType<typeof asConfig>
-export const asConfig = asObject({
-  username: asString,
-  password: asString,
-})
+### Configure Script
 
-const defaultConfig: Config = {
-  username: 'john',
-  passoword: 'supersecret',
-}
-
-export const config = makeConfig((raw: any) =>
-  asConfig({ ...configTemplate, ...raw })
-)
-```
-
-Although not recommended for every use case, this _could_ be useful for more complex configurations (e.g. multiple environments, etc).
-
-### Generating Default Config
-
-It's possible to use the default config from `makeConfig` to generate a `config.json` file. As long as `NODE_ENV=config` and a config file is missing, `makeConfig` will create a new config JSON file for you. This means we can simply add a `configure` script to our `package.json` that runs our `config.ts` file with this env var.
+Although the `makeConfig` function will create a new config JSON file at app runtime, we can do better. We can add a `configure` script in our `package.json` and include this in the `prepare` life-cycle script.
 
 ```json
 {
   "scripts": {
-    "configure": "NODE_ENV=config node -r sucrase/register src/config.ts"
+    "configure": "node -r sucrase/register src/config.ts",
+    "prepare": "yarn configure && yarn build"
   }
 }
 ```
 
-Running our script will generate a new `config.json` on a fresh install of our project.
-
-```sh
-yarn configure
-```
-
-> Tip: We can use `process.env.CONFIG` as the filepath argument for `makeConfig` in order to generate configs with differnt file names: `CONFIG=config.dev.json yarn configure`.
+Now our config file is available after app installation, ready for modification!
