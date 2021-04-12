@@ -1,4 +1,4 @@
-#!/usr/bin/env node -r sucrase/register
+#!/usr/bin/env node
 import { spawn } from 'child_process'
 import { readFileSync } from 'fs'
 import minimist from 'minimist'
