@@ -1,4 +1,4 @@
-import { Cleaner } from 'cleaners'
+import { asMaybe, asString, Cleaner } from 'cleaners'
 import { readFileSync, writeFileSync } from 'fs'
 import { join as joinPath } from 'path'
 
@@ -22,7 +22,12 @@ export const makeConfig = <T>(
     try {
       defaultConfig = asConfig({})
     } catch (error) {
-      throw new Error(`Missing config file: ${filepath}`)
+      const errorMessage =
+        asMaybe(asString)(error.message) ?? JSON.stringify(error)
+
+      throw new Error(
+        `Failed to create missing config file ${filepath} from cleaner: ${errorMessage} `
+      )
     }
 
     try {
