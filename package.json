@@ -1,6 +1,6 @@
 {
   "name": "cleaner-config",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A utility to manage config using cleaners.",
   "homepage": "https://github.com/samholmes/cleaner-config",
   "repository": {
