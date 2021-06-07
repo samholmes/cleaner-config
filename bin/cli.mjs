@@ -3,7 +3,7 @@ import { spawn } from 'child_process'
 import { readFileSync } from 'fs'
 import minimist from 'minimist'
 import { join as joinPath } from 'path'
-import { transform } from 'sucrase'
+import sucrase from 'sucrase'
 
 // Constants:
 
@@ -49,7 +49,7 @@ if (code == null) {
 
 // Compile:
 
-const compiledCode = transform(code, {
+const compiledCode = sucrase.transform(code, {
   transforms: ['typescript', 'imports']
 }).code
 
