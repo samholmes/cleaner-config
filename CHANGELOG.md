@@ -1,5 +1,11 @@
 # cleaner-config
 
+## 0.1.8 (2022-06-15)
+
+### Fixed
+
+- Search for `.js` file extensions in additon to `.ts` for config file default paths
+
 ## 0.1.7 (2021-06-08)
 
 ### Fixed
