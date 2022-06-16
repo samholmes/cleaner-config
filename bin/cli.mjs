@@ -7,7 +7,12 @@ import sucrase from 'sucrase'
 
 // Constants:
 
-const defaultPaths = ['config.ts', 'src/config.ts']
+const defaultPaths = [
+  'config.ts',
+  'config.js',
+  'src/config.ts',
+  'src/config.js'
+]
 
 // Env:
 
