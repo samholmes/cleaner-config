@@ -10,6 +10,9 @@
   "license": "MIT",
   "author": "Samuel Holmes <sam@edge.app>",
   "main": "lib/index.js",
+  "bin": {
+    "configure": "bin/cli.mjs"
+  },
   "scripts": {
     "build.lib": "sucrase -q -t typescript,imports,jsx -d ./lib ./src",
     "build.types": "tsc",
@@ -19,9 +22,6 @@
     "precommit": "lint-staged && yarn test && yarn prepare",
     "prepare": "npm-run-all clean -p build.*",
     "test": "NODE_ENV=test mocha 'test/**/*.test.ts'"
-  },
-  "bin": {
-    "configure": "bin/cli.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint"
