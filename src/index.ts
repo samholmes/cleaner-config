@@ -11,7 +11,7 @@ export const makeConfig = <T>(
   try {
     const json = configFromFile(filepath)
     config = JSON.parse(json)
-  } catch (error) {
+  } catch (error: any) {
     if (error.code !== 'ENOENT') {
       throw new Error(
         `Failed to read config file.\n${indentErrorStack(error.stack)}`
@@ -21,7 +21,7 @@ export const makeConfig = <T>(
     let defaultConfig: T
     try {
       defaultConfig = asConfig({})
-    } catch (error) {
+    } catch (error: any) {
       const errorMessage =
         asMaybe(asString)(error.message) ?? JSON.stringify(error)
 
@@ -32,7 +32,7 @@ export const makeConfig = <T>(
 
     try {
       configToFile(defaultConfig, filepath)
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(
         `Failed to write config file.\n${indentErrorStack(error.stack)}`
       )
@@ -44,7 +44,7 @@ export const makeConfig = <T>(
   // Validate config
   try {
     return asConfig(config)
-  } catch (error) {
+  } catch (error: any) {
     throw new TypeError(
       `Config validation failed\n${indentErrorStack(
         error.stack
