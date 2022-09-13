@@ -63,5 +63,6 @@ const compiledCode = sucrase.transform(code, {
 const node = spawn('node')
 
 node.stdout.pipe(process.stdout)
+node.stderr.pipe(process.stderr)
 node.stdin.write(compiledCode)
 node.stdin.end()
