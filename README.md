@@ -16,15 +16,15 @@ yarn add cleaner-config
 
 ### config.ts
 
-Your config is completely managed by a cleaner (`asConfig`). ALl you need is a file for your config cleaner and config object returned by `makeConfig`.
+Your config is completely managed by a cleaner (`asConfig`). All you need is a file for your config cleaner and config object returned by `makeConfig`.
 
 ```ts
 import { makeConfig } from 'cleaner-config'
-import { asObject, asString } from 'cleaners'
+import { asObject, asOptional, asString } from 'cleaners'
 
 export const asConfig = asObject({
-  username: asString,
-  password: asString,
+  username: asOptional(asString),
+  password: asOptional(asString),
 })
 
 export const config = makeConfig(asConfig)
