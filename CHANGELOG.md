@@ -1,5 +1,9 @@
 # cleaner-config
 
+## 0.1.9 (2022-09-13)
+
+- changed: If the cleaner changes the config file in some way, write those changes to disk. This ensures that the on-disk data will always match the latest format.
+
 ## 0.1.8 (2022-06-15)
 
 - fixed: Search for `.js` file extensions in addition to `.ts` for config file default paths.
