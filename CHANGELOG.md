@@ -1,6 +1,6 @@
 # cleaner-config
 
-## Unreleased
+## 0.1.10 (2023-10-19)
 
 - fixed: `configure` CLI runs the config file using `node -r sucrase/register` for proper module resolution handling.
 
