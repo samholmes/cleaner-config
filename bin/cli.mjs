@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawn } from 'child_process'
-import { readFileSync } from 'fs'
+import { accessSync, readFileSync } from 'fs'
 import minimist from 'minimist'
 import { join as joinPath } from 'path'
 import sucrase from 'sucrase'
@@ -23,27 +23,26 @@ const verbose = Boolean(!['0', 'false'].includes(VERBOSE))
 
 const argv = minimist(process.argv.slice(2))
 const pathArg = argv._[0]
+const paths = pathArg == null ? defaultPaths : [pathArg]
+
+const getConfigPath = () => {
+  for (const path of paths) {
+    if (path == null) break
+    const configPath = path[0] === '/' ? path : joinPath(process.cwd(), path)
+    try {
+      if (verbose) console.log(`Looking for config file: ${configPath}`)
+      accessSync(configPath)
+      return configPath
+    } catch (_) {}
+  }
+}
 
 // Read Config:
 
-let configPath = null
-const paths = pathArg == null ? defaultPaths : [pathArg]
-
 const code = (() => {
-  let code
-  while (code == null) {
-    if (configPath == null) {
-      const path = paths.shift()
-      if (path == null) break
-      configPath = path[0] === '/' ? path : joinPath(process.cwd(), path)
-    }
-    try {
-      if (verbose) console.log(`Reading config file: ${configPath}`)
-      code = readFileSync(configPath, 'utf-8')
-    } catch (error) {
-      configPath = null
-    }
-  }
+  const configPath = getConfigPath()
+  if (verbose) console.log(`Reading config file: ${configPath}`)
+  const code = readFileSync(configPath, 'utf-8')
   return code
 })()
 
