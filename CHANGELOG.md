@@ -1,5 +1,9 @@
 # cleaner-config
 
+## Unreleased
+
+- fixed: `configure` CLI runs the config file using `node -r sucrase/register` for proper module resolution handling.
+
 ## 0.1.9 (2022-09-13)
 
 - changed: If the cleaner changes the config file in some way, write those changes to disk. This ensures that the on-disk data will always match the latest format.

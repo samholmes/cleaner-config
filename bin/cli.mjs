@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import { spawn } from 'child_process'
-import { accessSync, readFileSync } from 'fs'
+import { accessSync } from 'fs'
 import minimist from 'minimist'
 import { join as joinPath } from 'path'
-import sucrase from 'sucrase'
 
 // Constants:
 
@@ -37,31 +36,16 @@ const getConfigPath = () => {
   }
 }
 
-// Read Config:
+// Run:
 
-const code = (() => {
-  const configPath = getConfigPath()
-  if (verbose) console.log(`Reading config file: ${configPath}`)
-  const code = readFileSync(configPath, 'utf-8')
-  return code
-})()
-
-if (code == null) {
+const configPath = getConfigPath()
+if (configPath == null) {
   console.error('Config not found')
   process.exit(1)
 }
 
-// Compile:
-
-const compiledCode = sucrase.transform(code, {
-  transforms: ['typescript', 'imports']
-}).code
-
-// Run:
-
-const node = spawn('node')
+const node = spawn('node', ['-r', 'sucrase/register', configPath])
 
 node.stdout.pipe(process.stdout)
 node.stderr.pipe(process.stderr)
-node.stdin.write(compiledCode)
 node.stdin.end()
